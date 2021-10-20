@@ -15,12 +15,10 @@ function createWindow () {
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
 
-  // 模态窗口
   const child = new BrowserWindow({
     parent: mainWindow,
-    title: '软件升级',
-    modal: true,
-    show: false
+    width: 400,
+    height: 80,
   })
   child.loadFile('upgrade.html')
   child.once('ready-to-show', () => {
