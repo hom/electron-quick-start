@@ -18,12 +18,6 @@ function createWindow () {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
-
-  // ipc 命令
-  ipcMain.on('relaunch', () => {
-    console.log('Ipc main receive command: relaunch')
-    app.quit()
-  })
 }
 
 // This method will be called when Electron has finished
@@ -48,3 +42,10 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+// ipc 命令
+ipcMain.on('relaunch', () => {
+  console.log('Ipc main receive command: relaunch')
+  // app.quit()
+  // app.relaunch()
+})
