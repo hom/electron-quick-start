@@ -15,12 +15,17 @@ function createWindow () {
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
 
+  // 模态窗口
   const child = new BrowserWindow({
     parent: mainWindow,
-    width: 400,
-    height: 300
+    title: '软件升级',
+    modal: true,
+    show: false
   })
   child.loadFile('upgrade.html')
+  child.once('ready-to-show', () => {
+    child.show()
+  })
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
