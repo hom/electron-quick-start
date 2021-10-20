@@ -4,3 +4,8 @@
 // `nodeIntegration` is turned off. Use `preload.js` to
 // selectively enable features needed in the rendering
 // process.
+// 渲染进程中执行
+window.service.hello()
+
+const relaunch = document.getElementById('onRelaunch')
+relaunch.addEventListener('click', window.ipc.relaunch)
