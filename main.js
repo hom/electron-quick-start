@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, ipcMain} = require('electron')
+const {app, BrowserWindow, BrowserView, ipcMain} = require('electron')
 const path = require('path')
 
 function createWindow () {
@@ -11,6 +11,11 @@ function createWindow () {
       preload: path.join(__dirname, 'preload.js')
     }
   })
+
+  const view = new BrowserView()
+  mainWindow.setBrowserView(view)
+  view.setBounds({ x: 0, y: 0, width: 300, height: 300 })
+  view.webContents.loadURL('https://electronjs.org')
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
