@@ -15,16 +15,6 @@ function createWindow () {
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
 
-  const child = new BrowserWindow({
-    parent: mainWindow,
-    width: 400,
-    height: 80,
-  })
-  child.loadFile('upgrade.html')
-  child.once('ready-to-show', () => {
-    child.show()
-  })
-
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
 }
