@@ -27,5 +27,5 @@ contextBridge.exposeInMainWorld('ipc', {
   relaunch: () => {
     ipcRenderer.send('relaunch')
     // console.log('relaunch')
-  }
+  },
 })

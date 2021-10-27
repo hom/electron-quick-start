@@ -2,6 +2,20 @@
 const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 
+function createChildWindow(mainWindow) {
+  const child = new BrowserWindow({
+    parent: mainWindow,
+    width: 400,
+    height: 80,
+    webPreferences: {
+      preload: path.join(__dirname, './upgrade/preload.js')
+    }
+  })
+  child.webContents.openDevTools()
+  child.loadFile('./upgrade/index.html')
+  child.webContents.send('send-to-child-window', 'hello child window')
+}
+
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -14,6 +28,11 @@ function createWindow () {
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
+
+  // 假设添加更新窗口
+  setTimeout(() => {
+    createChildWindow(mainWindow)
+  }, 3000);
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
@@ -45,6 +64,12 @@ app.on('window-all-closed', function () {
 // ipc 命令
 ipcMain.on('relaunch', () => {
   console.log('Ipc main receive command: relaunch')
+  // app.quit()
+  // app.relaunch()
+})
+
+ipcMain.on('confirm', () => {
+  console.log('Ipc main receive command: confirm')
   // app.quit()
   // app.relaunch()
 })

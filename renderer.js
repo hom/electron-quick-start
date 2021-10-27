@@ -9,7 +9,3 @@ window.service.hello()
 
 const relaunch = document.getElementById('onRelaunch')
 relaunch.addEventListener('click', window.ipc.relaunch)
-
-document.getElementById('onOpenChildWindow').addEventListener('click', () => {
-  window.open('https://www.baidu.com')
-})
